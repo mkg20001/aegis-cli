@@ -80,7 +80,7 @@ Execute aegis cli:
 aegis-cli
 ```
 
-# Screeshots
+# Screenshots
 
 ![](assets/img/aegis-cli-login-page.png)
 
