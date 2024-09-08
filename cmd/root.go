@@ -27,6 +27,10 @@ var rootCmd = &cobra.Command{
 
 		// fmt.Println(*vaultdata)
 
+		if err != nil {
+			return err
+		}
+
 		decrypteddb, err := internal.DecryptDB(*vaultdata)
 
 		if err != nil {
