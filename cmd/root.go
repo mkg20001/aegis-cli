@@ -12,6 +12,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var cfgFile string
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "aegis-cli",
@@ -22,8 +24,7 @@ var rootCmd = &cobra.Command{
 	// Run: func(cmd *cobra.Command, args []string) { },
 	RunE: func(cmd *cobra.Command, args []string) error {
 
-		homedir, _ := os.UserHomeDir()
-		vaultdata, err := internal.ReadVault(homedir + "/.config/aegis-cli/aegis.json")
+		vaultdata, err := internal.ReadVault(cfgFile)
 
 		// fmt.Println(*vaultdata)
 
@@ -64,7 +65,9 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.aegis-cli.yaml)")
+	homedir, _ := os.UserHomeDir()
+
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", homedir+"/.config/aegis-cli/aegis.json", "config file")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
